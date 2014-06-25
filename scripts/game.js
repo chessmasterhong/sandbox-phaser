@@ -42,10 +42,10 @@ Preloader.prototype = {
     preload: function() {
         this.game.load.onLoadComplete.addOnce(this.onLoadComplete, this);
 
-        this.load.image('mountain_landscape_23', 'media/tilesets/mountain_landscape_23.png');
-        this.load.image('main_player', 'media/player.png');
+        this.game.load.image('mountain_landscape_23', 'media/tilesets/mountain_landscape_23.png');
+        this.game.load.image('main_player', 'media/player.png');
 
-        this.load.tilemap('grassy_plains_1', 'scripts/levels/demo.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.tilemap('grassy_plains_1', 'scripts/levels/demo.json', null, Phaser.Tilemap.TILED_JSON);
     },
 
     update: function() {
@@ -61,16 +61,24 @@ Preloader.prototype = {
 
 //==============================================================================
 
-var MainGame = function(game) {};
+var MainGame = function(game) {
+    this.player = null;
+};
 
 MainGame.prototype = {
     create: function() {
-        var map = this.add.tilemap('grassy_plains_1');
+        var map = this.game.add.tilemap('grassy_plains_1');
         map.addTilesetImage('mountain_landscape_23', 'mountain_landscape_23');
         var layer = map.createLayer('ground');
         layer.resizeWorld();
 
-        this.add.sprite(64, 64, 'main_player', 'MainPlayer');
+        this.player = this.game.add.sprite(64, 64, 'main_player', 'MainPlayer');
+
+        this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
+        this.player.body.velocity.x = 50;
+    },
+
+    update: function() {
     }
 };
 
