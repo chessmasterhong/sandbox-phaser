@@ -1,5 +1,22 @@
 'use strict';
 
+var Boot = function(game) {};
+
+Boot.prototype = {
+    create: function() {
+        if(this.game.device.desktop) {
+            this.game.scale.pageAlignHorizontally = true;
+            this.game.scale.pageAlignVertically = true;
+
+            this.game.scale.refresh();
+        }
+
+        this.game.state.start('Preloader');
+    }
+}
+
+//==============================================================================
+
 var Preloader = function(game) {
     this.ready = false;
 };
@@ -36,7 +53,8 @@ MainGame.prototype = {
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container');
 
+game.state.add('Boot', Boot);
 game.state.add('Preloader', Preloader);
 game.state.add('MainGame', MainGame);
 
-game.state.start('Preloader');
+game.state.start('Boot');
