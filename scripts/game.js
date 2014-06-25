@@ -43,6 +43,7 @@ Preloader.prototype = {
         this.game.load.onLoadComplete.addOnce(this.onLoadComplete, this);
 
         this.load.image('mountain_landscape_23', 'media/tilesets/mountain_landscape_23.png');
+        this.load.image('main_player', 'media/player.png');
 
         this.load.tilemap('grassy_plains_1', 'scripts/levels/demo.json', null, Phaser.Tilemap.TILED_JSON);
     },
@@ -68,6 +69,8 @@ MainGame.prototype = {
         map.addTilesetImage('mountain_landscape_23', 'mountain_landscape_23');
         var layer = map.createLayer('ground');
         layer.resizeWorld();
+
+        this.add.sprite(64, 64, 'main_player', 'MainPlayer');
     }
 };
 
