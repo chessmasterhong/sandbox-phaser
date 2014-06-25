@@ -62,11 +62,20 @@ Preloader.prototype = {
 //==============================================================================
 
 var MainGame = function(game) {
+    this.KEY_UP = null;
+    this.KEY_DOWN = null;
+    this.KEY_LEFT = null;
+    this.KEY_RIGHT = null;
     this.player = null;
 };
 
 MainGame.prototype = {
     create: function() {
+        this.KEY_UP = this.input.keyboard.addKey(Phaser.Keyboard.UP);
+        this.KEY_DOWN = this.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+        this.KEY_LEFT = this.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        this.KEY_RIGHT = this.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+
         var map = this.game.add.tilemap('grassy_plains_1');
         map.addTilesetImage('mountain_landscape_23', 'mountain_landscape_23');
         var layer = map.createLayer('ground');
@@ -75,10 +84,19 @@ MainGame.prototype = {
         this.player = this.game.add.sprite(64, 64, 'main_player', 'MainPlayer');
 
         this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
-        this.player.body.velocity.x = 50;
     },
 
     update: function() {
+        if(this.KEY_UP.isDown) {
+            this.game.physics.arcade.velocity
+            this.player.y -= 2;
+        } else if(this.KEY_DOWN.isDown) {
+            this.player.y += 2;
+        } else if(this.KEY_LEFT.isDown) {
+            this.player.x -= 2;
+        } else if(this.KEY_RIGHT.isDown) {
+            this.player.x += 2;
+        }
     }
 };
 
