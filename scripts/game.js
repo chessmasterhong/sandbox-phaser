@@ -63,6 +63,7 @@ Preloader.prototype = {
 
 var MainGame = function(game) {
     this.KEY = {};
+    this.camera = null;
     this.player = null;
     this.speed = 128;
 };
@@ -82,6 +83,8 @@ MainGame.prototype = {
         this.player = this.game.add.sprite(64, 64, 'main_player', 'MainPlayer');
 
         this.game.physics.arcade.enable(this.player, Phaser.Physics.ARCADE);
+
+        this.game.camera.follow(this.player);
     },
 
     update: function() {
