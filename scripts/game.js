@@ -62,19 +62,17 @@ Preloader.prototype = {
 //==============================================================================
 
 var MainGame = function(game) {
-    this.KEY_UP = null;
-    this.KEY_DOWN = null;
-    this.KEY_LEFT = null;
-    this.KEY_RIGHT = null;
+    this.KEY = {};
     this.player = null;
+    this.speed = 2;
 };
 
 MainGame.prototype = {
     create: function() {
-        this.KEY_UP = this.input.keyboard.addKey(Phaser.Keyboard.UP);
-        this.KEY_DOWN = this.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-        this.KEY_LEFT = this.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-        this.KEY_RIGHT = this.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+        this.KEY.UP = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+        this.KEY.DOWN = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+        this.KEY.LEFT = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        this.KEY.RIGHT = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 
         var map = this.game.add.tilemap('grassy_plains_1');
         map.addTilesetImage('mountain_landscape_23', 'mountain_landscape_23');
@@ -85,14 +83,14 @@ MainGame.prototype = {
     },
 
     update: function() {
-        if(this.KEY_UP.isDown) {
-            this.player.y -= 2;
-        } else if(this.KEY_DOWN.isDown) {
-            this.player.y += 2;
-        } else if(this.KEY_LEFT.isDown) {
-            this.player.x -= 2;
-        } else if(this.KEY_RIGHT.isDown) {
-            this.player.x += 2;
+        if(this.KEY.UP.isDown) {
+            this.player.y -= this.speed;
+        } else if(this.KEY.DOWN.isDown) {
+            this.player.y += this.speed;
+        } else if(this.KEY.LEFT.isDown) {
+            this.player.x -= this.speed;
+        } else if(this.KEY.RIGHT.isDown) {
+            this.player.x += this.speed;
         }
     }
 };
