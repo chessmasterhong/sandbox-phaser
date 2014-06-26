@@ -64,7 +64,7 @@ Preloader.prototype = {
 var MainGame = function(game) {
     this.KEY = {};
     this.player = null;
-    this.speed = 2;
+    this.speed = 128;
 };
 
 MainGame.prototype = {
@@ -80,17 +80,26 @@ MainGame.prototype = {
         layer.resizeWorld();
 
         this.player = this.game.add.sprite(64, 64, 'main_player', 'MainPlayer');
+
+        this.game.physics.arcade.enable(this.player, Phaser.Physics.ARCADE);
     },
 
     update: function() {
         if(this.KEY.UP.isDown) {
-            this.player.y -= this.speed;
+            this.player.body.velocity.x = 0;
+            this.player.body.velocity.y = -this.speed;
         } else if(this.KEY.DOWN.isDown) {
-            this.player.y += this.speed;
+            this.player.body.velocity.x = 0;
+            this.player.body.velocity.y = this.speed;
         } else if(this.KEY.LEFT.isDown) {
-            this.player.x -= this.speed;
+            this.player.body.velocity.x = -this.speed;
+            this.player.body.velocity.y = 0;
         } else if(this.KEY.RIGHT.isDown) {
-            this.player.x += this.speed;
+            this.player.body.velocity.x = this.speed;
+            this.player.body.velocity.y = 0;
+        } else {
+            this.player.body.velocity.x = 0;
+            this.player.body.velocity.y = 0;
         }
     }
 };
