@@ -82,13 +82,10 @@ MainGame.prototype = {
         layer.resizeWorld();
 
         this.player = this.game.add.sprite(64, 64, 'main_player', 'MainPlayer');
-
-        this.game.physics.enable(this.player, Phaser.Physics.ARCADE);
     },
 
     update: function() {
         if(this.KEY_UP.isDown) {
-            this.game.physics.arcade.velocity
             this.player.y -= 2;
         } else if(this.KEY_DOWN.isDown) {
             this.player.y += 2;
