@@ -104,6 +104,11 @@ MainGame.prototype = {
             this.player.body.velocity.x = 0;
             this.player.body.velocity.y = 0;
         }
+    },
+
+    render: function() {
+        this.game.debug.cameraInfo(this.game.camera, 10, 20);
+        this.game.debug.spriteInfo(this.player, 10, 100);
     }
 };
 
