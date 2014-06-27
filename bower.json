@@ -1,0 +1,8 @@
+{
+  "name": "sandbox-phaser",
+  "private": true,
+  "dependencies": {
+    "phaser": "https://github.com/photonstorm/phaser/releases/download/v2.0.5/phaser.js",
+    "requirejs": "~2.1.14"
+  }
+}
