@@ -20,7 +20,7 @@ define(function() {
             var layer = map.createLayer('ground');
             layer.resizeWorld();
 
-            this.player = this.game.add.sprite(64, 64, 'main_player', 'MainPlayer');
+            this.player = this.game.add.sprite(64, 64, 'player', 'MainPlayer');
 
             this.game.physics.arcade.enable(this.player, Phaser.Physics.ARCADE);
 

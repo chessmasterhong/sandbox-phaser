@@ -20,7 +20,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/..\/media\/tilesets\/mountain_landscape_23.png",
+         "image":"..\/..\/..\/media\/tilesets\/mountain_landscape_23.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
